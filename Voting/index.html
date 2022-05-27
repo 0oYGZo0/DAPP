@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voting DAPP</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Candidate</th>
+                    <th>votes</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>zhangsan</td>
+                    <td id="candidate-1"></td>
+                    <td><a href="#" onclick="voteForCandidate('张三')" class="btn btn-primary">Vote</a></td>
+                </tr>  
+                <tr>
+                    <td>lisi</td>
+                    <td id="candidate-2"></td>
+                    <td><a href="#" onclick="voteForCandidate('李四')" class="btn btn-primary">Vote</a></td>
+                </tr> 
+                <tr>
+                    <td>wangwu</td>
+                    <td id="candidate-3"></td>
+                    <td><a href="#" onclick="voteForCandidate('王五')" class="btn btn-primary">Vote</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
