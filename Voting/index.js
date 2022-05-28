@@ -1,4 +1,5 @@
-candidateList = {'张三': "candidate-1", '李四': "candidate-2", '王五': "candidate-3"};
+var contract;
+var candidateList = {'张三': "candidate-1", '李四': "candidate-2", '王五': "candidate-3"};
 
 window.onload = function() {
     if (typeof web3 !== 'undefined') {
@@ -10,9 +11,8 @@ window.onload = function() {
     startApp();
 };
 
-var votingContract;
 function startApp() {
-    var contractabi = [
+    var contractAbi = [
         {
             "anonymous": false,
             "inputs": [
@@ -168,8 +168,9 @@ function startApp() {
             "type": "function"
         }
     ];
-    var contractaddress = '0xC4e79533e05af5b4e06Bbc699822e6051e7Ee60A';
-    votingContract = new web3.eth.Contract(contractabi, contractaddress);
+    var contractAddress = '0xC4e79533e05af5b4e06Bbc699822e6051e7Ee60A';
+    contract = new web3.eth.Contract(contractAbi, contractAddress);
+
     voteCount();
 }
 
@@ -177,7 +178,7 @@ function voteCount() {
     var candidateNames = Object.keys(candidateList);
     for(var i = 0; i < candidateNames.length; i++) {
         let name = candidateNames[i];
-        votingContract.methods.totalVotesFor(web3.utils.toHex(name))
+        contract.methods.totalVotesFor(web3.utils.toHex(name))
         .call(function(error, result) {
             $("#" + candidateList[name]).html(result);
         });
@@ -187,11 +188,11 @@ function voteCount() {
 function voteForCandidate(name) {
     try {
         web3.eth.getAccounts(function(error, accounts) {
-            votingContract.methods.voteForCandidate(web3.utils.toHex(name))
+            contract.methods.voteForCandidate(web3.utils.toHex(name))
             .send({from: accounts[0],
                    gas:300000},
                    function(error) {
-                       votingContract.methods.totalVotesFor(web3.utils.toHex(name))
+                        contract.methods.totalVotesFor(web3.utils.toHex(name))
                        .call(function(error, result) {
                            $("#" + candidateList[name]).html(result);
                        });

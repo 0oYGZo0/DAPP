@@ -5,7 +5,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:8545"));
 //console.log(web3);
 
 //创建对象
-var abi = [
+var contractAbi = [
 	{
 		"anonymous": false,
 		"inputs": [
@@ -161,8 +161,8 @@ var abi = [
 		"type": "function"
 	}
 ];
-var address = '0xC4e79533e05af5b4e06Bbc699822e6051e7Ee60A';
-var contract = new web3.eth.Contract(abi, address);
+var contractAddress = '0xC4e79533e05af5b4e06Bbc699822e6051e7Ee60A';
+var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
 // var zhangsan = '0xe5bca0e4b889';
 // var lisi = '0xe69d8ee59b9b';
@@ -173,9 +173,9 @@ var contract = new web3.eth.Contract(abi, address);
 // 	     console.log(result);
 // });
 
-// contract.methods.candidateList(0).call((error, result)=>{
-// 	console.log(result);
-// });
+contract.methods.candidateList(0).call((error, result)=>{
+	console.log(result);
+});
 
 // console.log(web3.utils.toHex('张三'));
 // console.log(web3.utils.toHex('李四'));
